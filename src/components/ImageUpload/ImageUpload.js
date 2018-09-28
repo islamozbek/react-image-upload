@@ -5,16 +5,27 @@ export default class ImageUpload extends Component{
 
     constructor(props){
         super(props);
-        this.state = {file: null}
+        this.state = {
+            file: null,
+            warning: false,
+            extensions: ['image/png', 'image/jpg', 'image/gif', 'image/jpeg', 'image/bmp', 'image/tiff'] // can be more
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
     handleChange(e){
-        this.setState({
-            file: e.target.files[0] 
-        });
+        let file = e.target.files[0];
+        if(this.state.extensions.indexOf(file.type) !== -1){
+            this.setState({
+                file: file,
+                warning: false
+            });
+        }else{
+            this.setState({warning: true})
+        }
+        
     }
 
     onSubmit(e){
@@ -37,14 +48,21 @@ export default class ImageUpload extends Component{
 
     render(){
         return(
-            <form onSubmit={this.onSubmit}>
-                <div className="form-control">
-                    <input type="file" onChange={this.handleChange} />
-                </div>
-                <div className="form-control">
-                    <input type="submit" value="Upload Me" />
-                </div>
-            </form>
+            <div>
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-control">
+                        <input type="file" onChange={this.handleChange} />
+                    </div>
+                    <div className="form-control">
+                        <input type="submit" disabled={this.state.warning} value="Upload Me" />
+                    </div>
+                </form>
+                {this.state.warning ?
+                    <div class="alert-warning">
+                        Please use image (Ex. {this.state.extensions.join(', ')})
+                    </div>
+                : ''}
+            </div>
         );
     }
 }

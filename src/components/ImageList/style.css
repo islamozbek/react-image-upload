@@ -1,15 +1,13 @@
 .img-list{
     border: 1px solid #ddd;
-    padding: 10px;
     margin: 20px 10px;
+    padding: 0 15px;
 }
 .img-list img{
-    width: 23%;
     height: 300px;
-    margin-right: 1%;
-    border-radius: 10px;
-    margin-top: 20px;
-    margin: 20px 1% 10px 1%;
+    border-radius: 5px;
+    margin-top: 7px;
+    border: 3px solid #555;
 }
 
 h4{
