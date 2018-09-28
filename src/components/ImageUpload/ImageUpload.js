@@ -58,7 +58,7 @@ export default class ImageUpload extends Component{
                     </div>
                 </form>
                 {this.state.warning ?
-                    <div class="alert-warning">
+                    <div className="alert-warning">
                         Please use image (Ex. {this.state.extensions.join(', ')})
                     </div>
                 : ''}
